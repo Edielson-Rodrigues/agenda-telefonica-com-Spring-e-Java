@@ -19,8 +19,8 @@ public class DataConfiguration {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/agendaTelefonica");
-		dataSource.setUsername("root");
-		dataSource.setPassword("naruto5566");
+		dataSource.setUsername("seuUser");
+		dataSource.setPassword("suaSenha");
 		return dataSource;
 	}
 	
@@ -34,5 +34,6 @@ public class DataConfiguration {
 		adapter.setPrepareConnection(true);
 		return adapter;
 	}
-	
 }
+
+//Lembre-se de criar a database.
