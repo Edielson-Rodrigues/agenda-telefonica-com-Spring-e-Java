@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+	xmlns:th="http://thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="meuCSS/agendaStyle.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   	<script src="Inputmask-5.x/dist/inputmask.min.js"></script>
+    
+    <title>Minha agenda</title>
+  
+</head>
+
+
+<body>
+    <form class="container" action="" method="post">
+        <div class="row">
+                <div class="input-field col s6">
+                    Nome <input type="text" name="nome">
+                </div>
+                <div class="input-field col s3">
+                    Número <input type="text" name="numero" id="numero-celular">
+                </div>
+                <div class="input-field col s3">
+                	<button class="btn waves-effect waves-light" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+                </div>
+        </div> 
+    </form>    
+    
+     <div class="container">
+    	<table>
+    		<thead>
+    			<tr>
+    				<th>Nome</th>
+    				
+    				<th>Número</th>
+    			</tr>
+    		</thead>
+    		
+    		<tbody>
+    			<tr th:each="contato: ${contatos}">
+    				<td><span th:text=" ${contato.nome}"></span></td>
+    				<td><span th:text=" ${contato.numero}"></span></td>
+					<td class="material-icons"><a th:href="${contato.codigo}"><span>clear</span></a></td>
+    			</tr>
+    			
+    			
+    		</tbody>
+    	</table>
+     
+    </div>
+		
+    <script>
+        $(document).ready(function(){
+            Inputmask({
+                mask: '(99) 99999-9999',
+            }).mask('#numero-celular');
+        });
+        
+    </script>
+
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+   
+</body>
+</html>
