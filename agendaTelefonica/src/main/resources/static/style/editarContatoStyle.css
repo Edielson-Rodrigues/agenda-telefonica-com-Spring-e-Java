@@ -1,0 +1,28 @@
+/* Estilos para o título */
+h1 {
+    font-size: 32px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Estilos para os campos de entrada */
+.input-field {
+    margin-bottom: 20px;
+}
+
+/* Estilos para o botão de envio */
+.btn {
+    background-color: #42a5f5;
+}
+
+/* Estilos para a lista de números */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 18px;
+}

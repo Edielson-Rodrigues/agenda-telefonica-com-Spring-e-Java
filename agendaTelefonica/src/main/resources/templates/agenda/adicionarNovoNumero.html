@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+	xmlns:th="http://thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="style/editarContatoStyle.css"/>   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   	<script src="Inputmask-5.x/dist/inputmask.min.js"></script>
+    <title>Adicionar novo número</title>
+  
+</head>
+
+<body>
+	<div th:each="contato: ${contato}">
+	   	<form th:action="@{salvarNovoNumero/{codigoContato}(codigoContato=${contato.codigoContato})}" class="container row" method="post">
+	   		<div class="input-field col s6">
+	   			Nome <input type="text" name="nome" th:value="${contato.nome}"> 
+	   		</div>
+	   		<div class="input-field col s3">
+	            Número <input type="text" name="digitos" id="numero-celular">
+	        </div>
+	   		<div class="input-field col s3">
+	   			<button class="btn waves-effect waves-light" type="submit">Enviar<i class="material-icons right">send</i></button>
+	   		</div>
+	   	</form>
+	</div>
+	
+   	<div class="container center">
+   		<ul th:each="numero: ${numeros}">
+   			<li th:text="${numero.digitos}"></li>
+   		</ul>
+   	</div>
+   	
+    <script>
+        $(document).ready(function(){
+            Inputmask({
+                mask: '(99) 99999-9999',
+            }).mask('#numero-celular');
+        });
+    </script>
+    
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    
+</body>
+</html>

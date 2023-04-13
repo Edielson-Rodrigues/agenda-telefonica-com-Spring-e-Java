@@ -8,26 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="meuCSS/agendaStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="style/minhaAgendaStyle.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    	<script src="Inputmask-5.x/dist/inputmask.min.js"></script>
-    
     <title>Minha agenda</title>
   
 </head>
 
 
 <body>
-    <form class="container" action="" method="post">
+    <form class="container" action="/salvarContato" method="post">
         <div class="row">
                 <div class="input-field col s6">
                     Nome <input type="text" name="nome">
                 </div>
                 <div class="input-field col s3">
-                    Número <input type="text" name="numero" id="numero-celular">
+                    Número <input type="text" name="digitos" id="numero-celular">
                 </div>
                 <div class="input-field col s3">
-                	<button class="btn waves-effect waves-light" type="submit" name="action">Enviar<i class="material-icons right">send</i></button>
+                	<button class="btn waves-effect waves-light" type="submit">Enviar<i class="material-icons right">send</i></button>
                 </div>
         </div> 
     </form>    
@@ -36,32 +35,47 @@
     	<table>
     		<thead>
     			<tr>
+    				<th></th>
     				<th>Nome</th>
-    				
     				<th>Número</th>
+    				<th>Apagar número</th>
+    				<th>Apagar contato</th>
     			</tr>
     		</thead>
     		
     		<tbody>
-    			<tr th:each="contato: ${contatos}">
-    				<td><span th:text=" ${contato.nome}"></span></td>
-    				<td><span th:text=" ${contato.numero}"></span></td>
-					<td class="material-icons"><a th:href="${contato.codigo}"><span>clear</span></a></td>
-    			</tr>
-    			
-    			
-    		</tbody>
-    	</table>
+				<tr th:each="contato: ${contatos}">
+					<td><a th:href="@{/editarContato={codigoContato}(codigoContato=${contato.codigoContato})}" onclick="window.open(this.href, 'popup', 'width=650%, height=500%'); return false;"><span class="material-icons">add_circle</span></a></td>
+			    	<td><span th:text=" ${contato.nome}"></span></td>
+			    	<td>
+			      		<ul th:each="numero: ${numeros}">
+			        		<li th:if="${numero.contato == contato}"><span th:text="${numero.digitos}"></span>
+			      		</ul>
+					</td>
+					<td> 
+						<ul th:each="numero: ${numeros}">
+			        		<li th:if="${numero.contato == contato}">
+			        			<a th:href="@{/deletarNumero/{codigoNumero}(codigoNumero=${numero.codigoNumero})}"><span class="material-icons">clear</span></a></li>
+			      		</ul>
+					</td>	
+					<td>
+						<a th:href="@{/deletarContato/{codigoContato}(codigoContato=${contato.codigoContato})}"><span class="material-icons">delete_forever</span></a>
+					</td>
+				</tr>
+			</tbody>
+
+    	</table>     
      
     </div>
 		
+	
+	
     <script>
         $(document).ready(function(){
             Inputmask({
                 mask: '(99) 99999-9999',
             }).mask('#numero-celular');
         });
-        
     </script>
 
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>

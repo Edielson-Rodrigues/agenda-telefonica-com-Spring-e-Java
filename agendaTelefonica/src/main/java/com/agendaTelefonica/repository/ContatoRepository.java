@@ -6,5 +6,6 @@ import com.agendaTelefonica.models.Contato;
 
 public interface ContatoRepository extends CrudRepository<Contato, String>{
 
+	Contato findByCodigoContato(long condigoContato);
 	
 }

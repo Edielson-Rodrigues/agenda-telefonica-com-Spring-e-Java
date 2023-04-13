@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.btn {
+    background-color: #42a5f5;
+}
+
+a.deletarNumero {
+    color: red;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+a.deletarNumero:hover {
+    color: darkred;
+}
+
+.material-icons {
+    vertical-align: middle;
+}

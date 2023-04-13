@@ -1,11 +1,13 @@
 package com.agendaTelefonica.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 
 
@@ -15,21 +17,22 @@ public class Contato implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private long codigo;
-	
+	private long codigoContato;
 	
 	@NotEmpty
 	private String nome;
 	
-	@NotEmpty
-	private String numero;
+	
+	@OneToMany
+	private List<Numero> numeros;
+	
 
-	public long getCodigo() {
-		return codigo;
+	public long getCodigoContato() {
+		return codigoContato;
 	}
 
-	public void setCodigo(long codigo) {
-		this.codigo = codigo;
+	public void setCodigoContato(long codigoContato) {
+		this.codigoContato = codigoContato;
 	}
 
 	public String getNome() {
@@ -40,12 +43,11 @@ public class Contato implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getNumero() {
-		return numero;
+	public List<Numero> getNumeros() {
+		return numeros;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumeros(List<Numero> numeros) {
+		this.numeros = numeros;
 	}
-	
 }
